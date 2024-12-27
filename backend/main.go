@@ -46,6 +46,9 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+	fs := http.FileServer(http.Dir("./frontend"))
+	http.Handle("/", fs)
+
 	http.HandleFunc("/auth/login", loginHandler)
 	http.HandleFunc("/auth/callback", callbackHandler)
 
